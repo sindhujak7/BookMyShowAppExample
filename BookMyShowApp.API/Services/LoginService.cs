@@ -26,7 +26,7 @@ namespace BookMyShowApp.API.Services
                 if (model != null)
                 {
                     string password = Encryption.EncodePasswordToBase64(model.Password);
-                    var result = _context.LoginDetails.Where(x => x.UserName == model.Username && x.Password == password).ToList();
+                    var result = _context.LoginDetails.Where(x => x.UserName.ToLower() == model.Username.ToLower() && x.Password == password).ToList();
                     if (result.Count > 0)
                     {
                         response.Status = true;
