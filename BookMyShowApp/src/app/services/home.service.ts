@@ -6,24 +6,26 @@ import { EnvService } from './env.service';
 })
 export class HomeService {
   public requestOptions:any;
-  constructor(private http:HttpClient ,private env:EnvService ) {
-const tokenvalue=localStorage.getItem('token');
+  constructor(private http:HttpClient ,private env:EnvService) {
+      const tokenvalue=localStorage.getItem('token');
 
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${tokenvalue}`
-    });
+          const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${tokenvalue}`
+          });
 
-  this.requestOptions = { headers: headers };
-
+        this.requestOptions = { headers: headers };
+       
 
    }
 
 getCitiesList(){
-  debugger
+  
   var result=this.http.get(this.env.API_URL+"Cities" ,this.requestOptions);
-  debugger
+  
   return result;
 }
+
+
 
 }

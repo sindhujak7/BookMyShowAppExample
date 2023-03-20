@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   ProdceedLogin(logindata: any) {
     if (logindata.valid) {
       this.service.ProceedLogin(logindata.value).subscribe(data => {
-       debugger
+       
         this.respdata=data;
         if(this.respdata.status ==true){
 

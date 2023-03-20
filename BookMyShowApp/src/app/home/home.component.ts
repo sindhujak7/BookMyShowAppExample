@@ -16,9 +16,10 @@ export class HomeComponent {
 public Cities:any=[];
 decodedToken: any;
 public selectedCityId:number=0;
-  constructor( private homservice:HomeService ,private jwtHelper: JwtHelperService){
+  constructor( private homservice:HomeService ,private jwtHelper: JwtHelperService ,private  router:Router){
 
-    this.getCitiesList();
+    this.IsTokenExpired();
+   
   }
   
 
@@ -32,4 +33,22 @@ public selectedCityId:number=0;
       })
   }
 
+  IsTokenExpired(){
+     
+    const tokenvalue=localStorage.getItem('token');
+  
+    if (this.jwtHelper.isTokenExpired(tokenvalue)) {
+      
+      console.log("token expired");
+      this.RedirectLogin();
+      // token expired 
+    } else {
+      console.log("token not expired");
+      this.getCitiesList();
+      // token valid
+    }
+  }
+  RedirectLogin() {
+    this.router.navigate(['login']);
+  }
 }

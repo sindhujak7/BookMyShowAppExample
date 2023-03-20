@@ -23,7 +23,7 @@ export class UserloginService {
   }
 
   Registeration(inputdata: any) {
-    debugger
+    
     return this.http.post(this.env.API_URL+'Authentication/register', inputdata);
   }
 

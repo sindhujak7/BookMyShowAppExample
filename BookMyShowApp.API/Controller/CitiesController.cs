@@ -14,19 +14,16 @@ namespace BookMyShowApp.API.Controller
     [ApiController]
     public class CitiesController : ControllerBase
     {
-        private readonly ILogin _login;
         public readonly ICities _cities;
         public CitiesController(ICities city)
         {
-            _cities = city;          //  _login = login; 
+            _cities = city;
 
         }
         [HttpGet]
         public  Task<IEnumerable<City>> Get()
         {
             return _cities.GetCities();
-
-
         }
      
     }

@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit {
     Email: new FormControl('', Validators.compose([Validators.required, Validators.email]))
   });
   SaveUser() {
-    debugger
+    
     if (this.reactiveform.valid) {
       this.service.Registeration(this.reactiveform.value).subscribe(res => {
         this.respdata = res;
