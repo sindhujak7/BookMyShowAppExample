@@ -12,6 +12,7 @@ namespace BookMyShowApp.API.Services
     {
         private readonly BookMyShowContext _context;
         private readonly IConfiguration iconfiguration;
+
         public LoginService(BookMyShowContext context, IConfiguration iconfiguration)
         {
             _context = context;

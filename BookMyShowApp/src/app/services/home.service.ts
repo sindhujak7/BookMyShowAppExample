@@ -1,16 +1,27 @@
 import { Injectable } from '@angular/core';
-import {HttpClient}   from  '@angular/common/http';
+import {HttpClient ,HttpHeaders}   from  '@angular/common/http';
 import { EnvService } from './env.service';
 @Injectable({
   providedIn: 'root'
 })
 export class HomeService {
+  public requestOptions:any;
+  constructor(private http:HttpClient ,private env:EnvService ) {
+const tokenvalue=localStorage.getItem('token');
 
-  constructor(private http:HttpClient ,private env:EnvService) { }
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${tokenvalue}`
+    });
+
+  this.requestOptions = { headers: headers };
+
+
+   }
 
 getCitiesList(){
   debugger
-  var result=this.http.get(this.env.API_URL+"Cities");
+  var result=this.http.get(this.env.API_URL+"Cities" ,this.requestOptions);
   debugger
   return result;
 }

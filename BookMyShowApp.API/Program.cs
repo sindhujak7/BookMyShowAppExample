@@ -12,16 +12,6 @@ using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddControllers().AddJsonOptions(x =>
-                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
-;
-
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<BookMyShowContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
-
 builder.Services.AddAuthentication(x =>
 {
     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -29,6 +19,7 @@ builder.Services.AddAuthentication(x =>
 }).AddJwtBearer(o =>
 {
     var Key = Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"]);
+    o.RequireHttpsMetadata = true;
     o.SaveToken = true;
     o.TokenValidationParameters = new TokenValidationParameters
     {
@@ -41,6 +32,20 @@ builder.Services.AddAuthentication(x =>
         IssuerSigningKey = new SymmetricSecurityKey(Key)
     };
 });
+
+// Add services to the container.
+builder.Services.AddControllers().AddJsonOptions(x =>
+                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+;
+
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+builder.Services.AddDbContext<BookMyShowContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
+
+
+
+
 
 builder.Services.AddAuthorization(auth =>
 {
@@ -89,6 +94,7 @@ app.UseCors(builder =>
     .AllowAnyMethod()
     .AllowAnyHeader();
 });
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 app.Run();
