@@ -1,0 +1,32 @@
+<p>
+    <mat-toolbar color="warn">
+      <mat-toolbar-row>
+        <img mat-card-image class="imgs" src="assets/icons/bookmyshowlogo.jfif">
+        <span class="example-spacer"></span>
+        <mat-form-field appearance="fill">
+            <mat-select [(value)]="selectedCityId">
+              <mat-option *ngFor="let city of Cities" [value]="city.id">
+                {{city.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </mat-toolbar-row>
+      </mat-toolbar>
+</p>
+<mat-card>
+  <mat-card-content>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        <li  class="nav-item">
+          <a class="nav-link">Movies</a>
+        </li>
+        <li  class="nav-item">
+          <a class="nav-link">Sports</a>
+        </li>
+      </ul>
+    </div>
+  </mat-card-content>
+</mat-card>

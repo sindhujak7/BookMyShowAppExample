@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/BookMyShow.Data/obj
+/BookMyShow.Data/bin/Debug/net6.0
+/BookMyShow.Data/.vs
+/BookMyShowApp.API/bin/Debug/net6.0
+/BookMyShowApp.API/.vs
+/BookMyShowApp.API/obj

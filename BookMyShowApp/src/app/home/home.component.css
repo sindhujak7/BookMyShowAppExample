@@ -1,0 +1,38 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+  .mat-mdc-select-arrow svg {
+    fill: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.mat-mdc-form-field {
+    --mat-mdc-form-field-floating-label-scale: 23.75;
+    display: inline-flex;
+    flex-direction: column;
+    min-width: 0;
+    text-align: left;
+    margin-top: 20px;
+}
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: red !important;
+    /* float: right; */
+}
+.mat-mdc-select-value-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    float: right;
+    color: white !important;
+}
+.mat-mdc-select-arrow svg {
+    fill: white !important;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
